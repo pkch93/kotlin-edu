@@ -1,33 +1,34 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.7.10"
 }
 
-group = "edu.pkch"
-version = "1.0.0-KotlinEdu"
+group = "edu.pkch.kotlin"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_1_8
-java.targetCompatibility = JavaVersion.VERSION_1_8
+tasks {
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    compileKotlin {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
 
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.21")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.7.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
-    testImplementation("org.assertj:assertj-core:3.18.1")
-}
-
-tasks {
-    test {
-        useJUnitPlatform()
-    }
+    testImplementation("org.junit.platform:junit-platform-launcher:1.9.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.0")
+    testImplementation("org.assertj:assertj-core:3.23.1")
 }
