@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "1.7.10"
 }
 
-group = "edu.pkch.kotlin"
+group = "edu.pkch"
 version = "1.0.0"
 
 repositories {
@@ -27,8 +27,6 @@ tasks {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.21")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.9.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.0")
-    testImplementation("org.assertj:assertj-core:3.23.1")
+    testImplementation("io.kotest:kotest-runner-junit5:5.4.2")
+    testImplementation("io.kotest:kotest-assertions-core:5.4.2")
 }
