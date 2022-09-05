@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 internal class RacingCarGameTest: StringSpec({
     "자동차 경주 게임을 진행한다." {
         val sut = RacingCarGame(
-            listOf(RacingCar(), RacingCar(), RacingCar()),
+            listOf(RacingCar("name1"), RacingCar("name2"), RacingCar("name3")),
             3,
             StaticMoveDiscriminator(
                 listOf(
@@ -20,9 +20,9 @@ internal class RacingCarGameTest: StringSpec({
         val actual = sut.play()
 
         actual shouldBe listOf(
-            listOf(MovedPosition(1), MovedPosition(0), MovedPosition(0)),
-            listOf(MovedPosition(2), MovedPosition(1), MovedPosition(0)),
-            listOf(MovedPosition(3), MovedPosition(2), MovedPosition(1))
+            listOf(MovedPosition("name1", 1), MovedPosition("name2", 0), MovedPosition("name3", 0)),
+            listOf(MovedPosition("name1", 2), MovedPosition("name2", 1), MovedPosition("name3", 0)),
+            listOf(MovedPosition("name1", 3), MovedPosition("name2", 2), MovedPosition("name3", 1))
         )
     }
 }) {

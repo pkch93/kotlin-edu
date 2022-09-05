@@ -6,14 +6,14 @@ import edu.pkch.racingcar.domain.RacingCarGame
 import edu.pkch.racingcar.domain.RandomMoveDiscriminator
 
 class RacingGamePlayer(
-    carCount: Int,
+    carNames: List<String>,
     totalRound: Int
 ) {
     private val racingCarGame: RacingCarGame
 
     init {
-        val racingCars = (0 until carCount)
-            .map { RacingCar() }
+        val racingCars = carNames
+            .map { RacingCar(it) }
             .toList()
         racingCarGame = RacingCarGame(racingCars, totalRound, RandomMoveDiscriminator)
     }
