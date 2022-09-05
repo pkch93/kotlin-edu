@@ -5,16 +5,16 @@ class RacingCarGame(
     private val totalRound: Int,
     private val moveDiscriminator: MoveDiscriminator
 ) {
-    fun play(): List<List<MovedPosition>> {
-        val result = mutableListOf<List<MovedPosition>>()
+    fun play(): RacingGameResult {
+        val roundResults = mutableListOf<RoundResult>()
 
         repeat(totalRound) {
-            val movedPositions: List<MovedPosition> = racingCars.map {
-                    racingCar -> racingCar.move(moveDiscriminator.discriminate())
-            }
-            result.add(movedPositions)
+            val movedPositions = racingCars
+                .map { racingCar -> racingCar.move(moveDiscriminator.discriminate()) }
+                .toList()
+            roundResults.add(RoundResult(movedPositions))
         }
 
-        return result
+        return RacingGameResult(roundResults)
     }
 }

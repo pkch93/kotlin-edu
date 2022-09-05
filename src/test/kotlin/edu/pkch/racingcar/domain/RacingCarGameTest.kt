@@ -3,7 +3,7 @@ package edu.pkch.racingcar.domain
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-internal class RacingCarGameTest: StringSpec({
+internal class RacingCarGameTest : StringSpec({
     "자동차 경주 게임을 진행한다." {
         val sut = RacingCarGame(
             listOf(RacingCar("name1"), RacingCar("name2"), RacingCar("name3")),
@@ -19,16 +19,30 @@ internal class RacingCarGameTest: StringSpec({
 
         val actual = sut.play()
 
-        actual shouldBe listOf(
-            listOf(MovedPosition("name1", 1), MovedPosition("name2", 0), MovedPosition("name3", 0)),
-            listOf(MovedPosition("name1", 2), MovedPosition("name2", 1), MovedPosition("name3", 0)),
-            listOf(MovedPosition("name1", 3), MovedPosition("name2", 2), MovedPosition("name3", 1))
+        actual shouldBe RacingGameResult(
+                listOf(
+                    RoundResult(
+                        listOf(
+                            MovedPosition("name1", 1),
+                            MovedPosition("name2", 0),
+                            MovedPosition("name3", 0)
+                        )
+                    ),
+                    RoundResult(
+                        listOf(
+                            MovedPosition("name1", 2),
+                            MovedPosition("name2", 1),
+                            MovedPosition("name3", 0)
+                        )
+                    ),
+                    RoundResult(listOf(MovedPosition("name1", 3), MovedPosition("name2", 2), MovedPosition("name3", 1)))
+                )
         )
     }
 }) {
     private class StaticMoveDiscriminator(
         val staticValues: List<Boolean>,
-    ): MoveDiscriminator {
+    ) : MoveDiscriminator {
         var current = 0
 
         override fun discriminate(): Boolean {

@@ -1,9 +1,6 @@
 package edu.pkch.racingcar.application
 
-import edu.pkch.racingcar.domain.MovedPosition
-import edu.pkch.racingcar.domain.RacingCar
-import edu.pkch.racingcar.domain.RacingCarGame
-import edu.pkch.racingcar.domain.RandomMoveDiscriminator
+import edu.pkch.racingcar.domain.*
 
 class RacingGamePlayer(
     carNames: List<String>,
@@ -18,7 +15,7 @@ class RacingGamePlayer(
         racingCarGame = RacingCarGame(racingCars, totalRound, RandomMoveDiscriminator)
     }
 
-    fun play(): List<List<MovedPosition>> {
+    fun play(): RacingGameResult {
         return racingCarGame.play()
     }
 }
